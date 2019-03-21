@@ -1,0 +1,16 @@
+.start-button{
+    object-fit: cover;
+    background-color: #c0c0c0;
+}
+
+.start-button:hover {
+    background-color: #cacaca;
+}
+
+.task {
+    background-color: #c0c0c0;
+}
+
+.task:hover {
+    background-color: #cacaca;
+}
