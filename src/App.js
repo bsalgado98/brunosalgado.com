@@ -7,14 +7,16 @@ import MyResume from './components/MyResume';
 
 class App extends Component {
 
+  state = {
+    currentApp: '',
+  }
+
   onDragOver = (event) => {
     event.preventDefault();
   }
 
   onDrop = (event, cat) => {
     event.preventDefault();
-    var data = event.dataTransfer.getData("text");
-    event.target.appendChild(document.getElementById(data));
   }
 
   render() {
@@ -23,7 +25,6 @@ class App extends Component {
         <div id='desktop'>
           <DesktopApp icon='script_file_blue-1.png' text='My Resume.pdf'></DesktopApp>
           <AppFrame></AppFrame>
-          <MyResume id='resume'></MyResume>
 
           <DesktopApp icon='briefcase-4.png' text='My Experience.txt'></DesktopApp>
           <DesktopApp icon='directory_closed-4.png' text='My Projects'></DesktopApp>

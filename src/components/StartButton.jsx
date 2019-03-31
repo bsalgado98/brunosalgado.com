@@ -30,7 +30,7 @@ class StartButton extends Component {
     state = {  }
     render() { 
         return (
-            <div class="start-button" style={buttonContainerStyle}>
+            <div className="start-button" style={buttonContainerStyle}>
                 <img src={require(`../img/menu/${this.props.icon}`)} alt="" style={iconStyle}></img>
                 <p style={textStyle} href={this.props.href}>{this.props.text}</p>
             </div>

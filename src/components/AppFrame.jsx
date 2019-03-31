@@ -34,9 +34,9 @@ class AppFrame extends Component {
     state = {  }
     render() { 
         return (
-            <div id="canvas-wrap" style={wrapStyle} class="draggable">
+            <div id="canvas-wrap" style={wrapStyle} className="draggable">
                 <canvas style={appFrameStyle} width='500px' height='500px'></canvas>
-                <div class="drag-area">
+                <div className="drag-area">
                     <img id ='app-icon' src='./windows-logo.png'></img>
                     <p id="app-title">EXTENDED</p>
                     <div id="app-controlBtns">

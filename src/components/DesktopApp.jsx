@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MyResume from './MyResume';
 
 const appStyle = {
     width: 'auto',
@@ -23,12 +24,12 @@ class DesktopApp extends Component {
     state = {  }
 
     openApp = (appName) => {
-        document.getElementById(appName).style.display = 'none';
+        console.log('egad');
     }
 
     render() { 
         return (
-            <div style={appStyle} onClick={this.openApp('resume')}>
+            <div style={appStyle}>
                 <img src={require(`../img/icons/${this.props.icon}`)} alt="" style={iconStyle}></img>
                 <p style={textStyle} href={this.props.href}>{this.props.text}</p>
             </div>
