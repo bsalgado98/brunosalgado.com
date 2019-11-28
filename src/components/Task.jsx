@@ -12,11 +12,11 @@ const buttonContainerStyle = {
     maxWidth: '40%',
     padding: '5px',
     margin: '3px',
-    // boxShadow: '2px 2px',
-    borderLeft: '2px solid white',
-    borderTop: '2px solid white',
-    borderRight: '2px solid black',
-    borderBottom: '2px solid black'
+    borderLeft: '2px solid black',
+    borderTop: '2px solid black',
+    borderRight: '2px solid white',
+    borderBottom: '2px solid white',
+    backgroundColor: '#cacaca'
 }
 
 const iconStyle = {

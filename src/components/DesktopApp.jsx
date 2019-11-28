@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MyResume from './MyResume';
 
 const appStyle = {
     width: 'auto',
@@ -21,16 +20,30 @@ const textStyle = {
 }
 
 class DesktopApp extends Component {
-    state = {  }
+    constructor(props) {
+        super(props);
+        this.open = this.open.bind(this);
+        this.exit = this.exit.bind(this);
+    }
 
-    openApp = (appName) => {
-        console.log('egad');
+    open() {
+        switch(this.props.text) {
+            case "My Resume.pdf":
+                window.open('Bruno-Salgado-Resume.pdf');
+            break;
+            default:
+                this.props.openApp(this.props.text, this.props.icon)
+        }
+    }
+
+    exit() {
+        this.props.exitApp()
     }
 
     render() { 
         return (
             <div style={appStyle}>
-                <img src={require(`../img/icons/${this.props.icon}`)} alt="" style={iconStyle}></img>
+                <img src={require(`../img/icons/${this.props.icon}`)} alt="" style={iconStyle} onClick={this.open}></img>
                 <p style={textStyle} href={this.props.href}>{this.props.text}</p>
             </div>
         );

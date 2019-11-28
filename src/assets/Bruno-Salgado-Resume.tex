@@ -1,0 +1,78 @@
+\documentclass[11pt,letterpaper,roman]{moderncv}
+\usepackage{fontawesome}
+
+\moderncvstyle{classic}
+% \moderncvstyle{banking}
+\definecolor{color1}{RGB}{127, 32, 3}
+\definecolor{color2}{RGB}{66, 66, 66}
+
+\usepackage[scale=0.8,margin=0.65in]{geometry}
+
+\name{Bruno}{Salgado}
+\phone[mobile]{1-908-358-6090}
+\email{bsalgado@stevens.edu}
+\social[linkedin]{brunosalgado98}
+\social[github]{bsalgado98}
+\homepage{brunosalgado.com}
+
+\begin{document}
+\makecvtitle
+	
+	% this sets the width of the cventry year column
+	% IDK why but 1 y is perfect and 4 ys is bad
+	\sethintscolumntowidth{mmm yyyy -- mmm y}
+	
+	\section{Education}
+	\cventry{Sep 2016 -- May 2021}{Software Engineering, B.E.}{Stevens Institute of Technology}{Hoboken, NJ}{}{
+		\textit{GPA -- 3.26}
+		\begin{itemize}
+			\item Software Engineering Club, President, Co-Founder
+			\item Student Government Association, Electronics \& Gaming Subcommittee Head
+			\item Stevens Hackathon Committee, DuckHacks, Sponsorship Director
+			\item Courses: Agile Methods for Software Development, Data Structures \& Algorithms,  Supply Chain Logistics \& Management, Probability \& Statistics
+		\end{itemize}
+	}
+	
+	\section{Experience}
+	\cventry{Jan 2019 -- Present}{Johnson \& Johnson}{Software Engineer Co-op}{Raritan, NJ}{}{
+		\begin{itemize}
+			\item Spearheaded the animation for a new virtual assistant using Three.js by working closely with a design contractor and providing daily iterations of the assistant
+			\item Re-engineered a Robotic Process Automation project by negotiating requirements with team lead thus saving \$22,080 in company resources
+			\item Directed discussions with external resources, including Apple engineers, in order to facilitate API integration for a specific use case
+			\item Hosted 2 events at different schools to promote Software Engineering and J\&J culture
+		\end{itemize}
+	}
+	\cventry{Jan 2018 -- Aug 2018}{Crestron Electronics}{Systems Test Engineer Co-op}{Rockleigh, NJ}{}{
+		\begin{itemize}
+			\item Developed scripts in VBScript to run fully automated tests on user interface used by 2,000 daily users
+			\item Performed in -- depth manual testing of JSON -- RPC communication protocols and found over 30 major bugs in mission critical modules
+		\end{itemize}
+	}
+	
+	\section{Software Projects}
+	\cventry{Oct 2019}{Organize My Apps!}{Self--Project}{\href{https://organize-my-apps.firebaseapp.com}{organize-my-apps.firebaseapp.com}}{}{
+		\textit{React, Google Firestore Database, Google Authentication}
+		\begin{itemize}
+			\item Deployed a website that keeps track of users' employment applications. Website authenticates users and stores their data using Google Firebase backend services and currently boasts over 10 active users.
+		\end{itemize}
+	}
+	\cventry{Mar 2019 -- Jun 2019}{brunosalgado.com}{Self--Project}{\href{https://github.com/bsalgado98/brunosalgado.com}{Github: brunosalgado.com}}{}{
+		\textit{React}
+		\begin{itemize}
+			\item Built a resume website that strongly resembles the Windows 98 operating system using React.
+		\end{itemize}
+	}
+	\cventry{Sep 2018}{EngCalc}{Self--Project}{\href{https://github.com/bsalgado98/EngCalc}{Github: EngCalc}}{}{
+		\textit{Java, JavaFx}
+		\begin{itemize}
+			\item Constructed a desktop application in Java that solves equations used in the Stevens Engineering Economics course
+		\end{itemize}
+	}
+	
+	\section{Skills}
+	\cvitem{Languages}{Java (proficient), Bash (novice), Spanish (native)}
+	\cvitem{Web Development}{HTML, CSS, JavaScript, React, React Native}
+	\cvitem{Tools}{Eclipse, Google Firebase, Git, Bitbucket, AWS Lambda (serverless)}
+	\cvitem{Project Management}{Agile, Scrum, Kanban}
+
+\end{document}
