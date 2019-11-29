@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import interact from 'interactjs';
 import './AppFrame.css';
 import { EXPERIENCE_TEXT, SKILLS_TEXT, PROJECTS_TEXT, REFERENCES_TEXT } from '../../App';
-import MyExperience from '../MyExperience';
-import MySkills from '../MySkills';
+import MyExperience from '../MyExperience/MyExperience';
+import MySkills from '../MySkills/MySkills';
 import MyProjects from '../MyProjects/MyProjects';
-import ContactInfo from '../ContactInfo/ContactInfo.jsx';
-import { CONTACT_TEXT } from '../StartMenu';
-import References from '../References';
+import ContactInfo from '../ContactInfo/ContactInfo';
+import { CONTACT_TEXT } from '../StartMenu/StartMenu';
+import References from '../References/References';
 
 interact('.draggable').draggable({
     onmove: dragMoveListener,

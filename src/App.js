@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Taskbar from './components/Taskbar.jsx';
+import Taskbar from './components/Taskbar/Taskbar';
 import DesktopApp from './components/DesktopApp/DesktopApp';
 import AppFrame from './components/AppFrame/AppFrame';
-import StartMenu from './components/StartMenu';
+import StartMenu from './components/StartMenu/StartMenu';
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 export const RESUME_TEXT = "My Resume.pdf"

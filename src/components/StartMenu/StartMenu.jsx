@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './StartMenu.css';
-import { RESUME_TEXT, RESUME_ICON, EXPERIENCE_ICON, EXPERIENCE_TEXT, SKILLS_ICON, SKILLS_TEXT, PROJECTS_ICON, PROJECTS_TEXT, REFERENCES_ICON, REFERENCES_TEXT } from '../App';
-import References from './References';
-import resume from '../assets/Bruno-Salgado-Resume.pdf'
+import { RESUME_TEXT, RESUME_ICON, EXPERIENCE_ICON, EXPERIENCE_TEXT, SKILLS_ICON, SKILLS_TEXT, PROJECTS_ICON, PROJECTS_TEXT, REFERENCES_ICON, REFERENCES_TEXT } from '../../App'
+import References from '../References/References';
+import resume from '../../assets/Bruno-Salgado-Resume.pdf'
 
 export const CONTACT_TEXT = 'Contact Info'
 export const CONTACT_ICON = 'address_book_card_users.png'
@@ -65,7 +65,7 @@ class MyResumeApp extends Component {
     render() {
         return(
             <a href={resume} target='_blank' className='StartMenuApp' style={{textDecoration: 'none', color: 'inherit'}}>
-                <img src={require(`../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='resume icon'></img>
+                <img src={require(`../../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='resume icon'></img>
                 <p className='StartMenuAppText'>{RESUME_TEXT}</p>
             </a>
         )
@@ -89,7 +89,7 @@ class MyExperienceApp extends Component {
     render() {
         return(
             <div onClick={this.handleClick} className='StartMenuApp'>
-                <img src={require(`../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='xp icon'></img>
+                <img src={require(`../../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='xp icon'></img>
                 <p className='StartMenuAppText'>{EXPERIENCE_TEXT}</p>
             </div>
         )
@@ -113,7 +113,7 @@ class MySkillsApp extends Component {
     render() {
         return(
             <div onClick={this.handleClick} className='StartMenuApp'>
-                <img src={require(`../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='skills icon'></img>
+                <img src={require(`../../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='skills icon'></img>
                 <p className='StartMenuAppText'>{SKILLS_TEXT}</p>
             </div>
         )
@@ -137,7 +137,7 @@ class MyProjectsApp extends Component {
     render() {
         return(
             <div onClick={this.handleClick} className='StartMenuApp'>
-                <img src={require(`../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='projects icon'></img>
+                <img src={require(`../../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='projects icon'></img>
                 <p className='StartMenuAppText'>{PROJECTS_TEXT}</p>
             </div>
         )
@@ -161,7 +161,7 @@ class ReferencesApp extends Component {
     render() {
         return(
             <div onClick={this.handleClick} className='StartMenuApp'>
-                <img src={require(`../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='references icon'></img>
+                <img src={require(`../../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='references icon'></img>
                 <p className='StartMenuAppText'>{REFERENCES_TEXT}</p>
             </div>
         )
@@ -185,7 +185,7 @@ class ContactInfoApp extends Component {
     render() {
         return(
             <div onClick={this.handleClick} className='StartMenuApp'>
-                <img src={require(`../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='contact icon'></img>
+                <img src={require(`../../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='contact icon'></img>
                 <p className='StartMenuAppText'>{CONTACT_TEXT}</p>
             </div>
         )
@@ -209,7 +209,7 @@ class ShutDown extends Component {
     render() {
         return(
             <div onClick={this.handleClick} className='StartMenuApp'>
-                <img src={require(`../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='shutdown icon'></img>
+                <img src={require(`../../img/icons/${this.state.icon}`)} className='StartMenuAppIcon' alt='shutdown icon'></img>
                 <p className='StartMenuAppText'>{SHUTDOWN_TEXT}</p>
             </div>
         )

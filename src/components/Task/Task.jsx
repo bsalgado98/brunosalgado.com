@@ -31,7 +31,7 @@ class Task extends Component {
     render() { 
         return (
             <div className="task" style={buttonContainerStyle}>
-                <img src={require(`../img/icons/${this.props.icon}`)} alt="" style={iconStyle}></img>
+                <img src={require(`../../img/icons/${this.props.icon}`)} alt="" style={iconStyle}></img>
                 <p style={textStyle} href={this.props.href}>{this.props.text}</p>
             </div>
         );

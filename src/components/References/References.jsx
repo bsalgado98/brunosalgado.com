@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './References.css';
-import { REFERENCES_TEXT } from '../App';
+import { REFERENCES_TEXT } from '../../App';
 
 class References extends Component {
     constructor(props) {

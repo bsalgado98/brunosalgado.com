@@ -26,7 +26,7 @@ class StartButton extends Component {
     render() { 
         return (
             <div className={ this.props.activated ? "StartButtonActivated" : "StartButton" } onClick={this.open}>
-                <img src={require(`../img/menu/${this.props.icon}`)} alt="" style={iconStyle}></img>
+                <img src={require(`../../img/menu/${this.props.icon}`)} alt="" style={iconStyle}></img>
                 <p style={textStyle} href={this.props.href}>{this.props.text}</p>
             </div>
         );

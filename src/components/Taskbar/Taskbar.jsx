@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import StartButton from './StartButton';
-import Task from './Task';
+import StartButton from '../StartButton/StartButton';
+import Task from '../Task/Task';
 
 const barStyle = {
     position: 'absolute',
