@@ -17,9 +17,9 @@ class ContactInfo extends Component {
     render() { 
         return (
             <div id="contact">
-                <a className='ContactMedium' href='mailto:bsalgado@stevens.edu'><img src={require(`../img/icons/${this.state.emailIcon}`)} alt='email icon'></img></a>
-                <a className='ContactMedium' href='https://www.github.com/bsalgado98'><img src={require(`../img/icons/${this.state.githubIcon}`)} alt='github icon'></img></a>
-                <a className='ContactMedium' href='https://www.linkedin.com/in/brunosalgado98'><img src={require(`../img/icons/${this.state.linkedinIcon}`)} alt='linkedin icon'></img></a>
+                <a className='ContactMedium' href='mailto:bsalgado@stevens.edu'><img src={require(`../../img/icons/${this.state.emailIcon}`)} alt='email icon'></img></a>
+                <a className='ContactMedium' href='https://www.github.com/bsalgado98'><img src={require(`../../img/icons/${this.state.githubIcon}`)} alt='github icon'></img></a>
+                <a className='ContactMedium' href='https://www.linkedin.com/in/brunosalgado98'><img src={require(`../../img/icons/${this.state.linkedinIcon}`)} alt='linkedin icon'></img></a>
             </div>
         );
     }

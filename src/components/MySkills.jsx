@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Radar } from 'react-chartjs-2';
+// import { Radar } from 'react-chartjs-2';
 
 const skillsRadarData = {
     labels: ['Java', 'Python', 'Swift', 'HTML/CSS', 'JavaScript', 'React'],
@@ -44,7 +44,7 @@ class MySkills extends Component {
     render() { 
         return (
             <div style={skillsStyle}>
-                <Radar data={skillsRadarData} options={skillsRadarOptions}></Radar>
+                {/* <Radar data={skillsRadarData} options={skillsRadarOptions}></Radar> */}
             </div>
         );
     }

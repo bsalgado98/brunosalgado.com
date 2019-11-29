@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import interact from 'interactjs';
 import './AppFrame.css';
-import { EXPERIENCE_TEXT, SKILLS_TEXT, PROJECTS_TEXT, REFERENCES_TEXT } from '../App';
-import MyExperience from './MyExperience';
-import MySkills from './MySkills';
-import MyProjects from './MyProjects';
-import ContactInfo from './ContactInfo.jsx';
-import { CONTACT_TEXT } from './StartMenu';
-import References from './References';
+import { EXPERIENCE_TEXT, SKILLS_TEXT, PROJECTS_TEXT, REFERENCES_TEXT } from '../../App';
+import MyExperience from '../MyExperience';
+import MySkills from '../MySkills';
+import MyProjects from '../MyProjects/MyProjects';
+import ContactInfo from '../ContactInfo/ContactInfo.jsx';
+import { CONTACT_TEXT } from '../StartMenu';
+import References from '../References';
 
 interact('.draggable').draggable({
     onmove: dragMoveListener,
@@ -50,7 +50,7 @@ class AppFrame extends Component {
                 {/* <canvas id="app" ref="app" style={appFrameStyle} width='500px' height='500px'></canvas> */}
                 <div id="drag-area-wrap">
                     <div id="drag-area" className="drag-area">
-                        <img id ='app-icon' src={require(`../img/icons/${this.props.icon}`)} alt='app icon'></img>
+                        <img id ='app-icon' src={require(`../../img/icons/${this.props.icon}`)} alt='app icon'></img>
                         <p id="app-title">{this.props.app}</p>
                         <div id="app-controlBtns">
                             <div id="app-exitBtn" onClick={this.exit}>✕</div>

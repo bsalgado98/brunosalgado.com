@@ -43,7 +43,7 @@ class DesktopApp extends Component {
     render() { 
         return (
             <div style={appStyle}>
-                <img src={require(`../img/icons/${this.props.icon}`)} alt="" style={iconStyle} onClick={this.open}></img>
+                <img src={require(`../../img/icons/${this.props.icon}`)} alt="" style={iconStyle} onClick={this.open}></img>
                 <p style={textStyle} href={this.props.href}>{this.props.text}</p>
             </div>
         );

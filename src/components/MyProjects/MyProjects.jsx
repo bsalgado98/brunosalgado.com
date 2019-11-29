@@ -54,7 +54,7 @@ class FileTreeItem extends Component {
     render() {
         return(
             <a id="file-tree-item" onClick={this.openFileItem}>
-                <img id="file-tree-item-icon" src={require(`../img/icons/${this.props.icon}`)} alt='item icon'></img>
+                <img id="file-tree-item-icon" src={require(`../../img/icons/${this.props.icon}`)} alt='item icon'></img>
                 <p id="file-tree-item-text">{this.props.item}</p>
             </a>
         );

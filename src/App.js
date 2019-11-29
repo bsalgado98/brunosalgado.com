@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Taskbar from './components/Taskbar.jsx';
-import DesktopApp from './components/DesktopApp';
-import AppFrame from './components/AppFrame';
+import DesktopApp from './components/DesktopApp/DesktopApp';
+import AppFrame from './components/AppFrame/AppFrame';
 import StartMenu from './components/StartMenu';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 export const RESUME_TEXT = "My Resume.pdf"
 export const RESUME_ICON = "script_file_blue-1.png"

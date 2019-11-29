@@ -5,7 +5,7 @@
     right: 2px;
     background-image: linear-gradient(to right, #01006b , #0705ff);
     width: 99%;
-    height: 5%;
+    height: auto;
     display: flex;
     align-items: center;
 }
@@ -27,7 +27,6 @@
 }
 
 #app-exitBtn {
-    height: 100%;
-    width: 25px;
-    
+    /* height: 100%;
+    width: 25px; */
 }

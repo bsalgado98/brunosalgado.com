@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './StartMenu.css';
 import { RESUME_TEXT, RESUME_ICON, EXPERIENCE_ICON, EXPERIENCE_TEXT, SKILLS_ICON, SKILLS_TEXT, PROJECTS_ICON, PROJECTS_TEXT, REFERENCES_ICON, REFERENCES_TEXT } from '../App';
 import References from './References';
-import resume from './Bruno-Salgado-Resume.pdf';
+import resume from '../assets/Bruno-Salgado-Resume.pdf'
 
 export const CONTACT_TEXT = 'Contact Info'
 export const CONTACT_ICON = 'address_book_card_users.png'
