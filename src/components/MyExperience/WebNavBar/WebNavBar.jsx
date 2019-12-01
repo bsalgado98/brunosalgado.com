@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import './WebNavBar.css'
 import CurrentExperienceIndexContext from '../CurrentExperienceIndexContext'
+
 let currentExperienceIndex
 const WebNavBarItem = ({text, img}) => {
     // return (
@@ -34,14 +35,41 @@ const WebNavBarItem = ({text, img}) => {
         case 'Forward':
             return (
                 <div className='WebNavBarItem' onClick={() => currentExperienceIndex(1)}>
-                    <img src=''></img>
+                    <div className='Arrow'>
+                        <span className='ArrowBase'/>
+                        <span className='ArrowForward'/>
+                    </div>
                     <p>{text}</p>
                 </div>
             )
         case 'Back':
             return (
                 <div className='WebNavBarItem' onClick={() => currentExperienceIndex(-1)}>
-                    <img src=''></img>
+                    <div className='Arrow'>
+                        <span className='ArrowBack'/>
+                        <span className='ArrowBase'/>
+                    </div>
+                    <p>{text}</p>
+                </div>
+            )
+        case 'Go':
+            return (
+                <div className='WebNavBarItem'>
+                    <p>&#8618;{text}</p>
+                </div>
+            )
+        case 'Refresh':
+            return (
+                <div className='WebNavBarItem'>
+                    <p
+                        style = {{
+                            display: 'flex',
+                            fontSize: '32px',
+                            textDecoration: 'none',
+                            color: 'green',
+                            alignSelf: 'center'
+                        }}
+                    >&#8634;</p>
                     <p>{text}</p>
                 </div>
             )
@@ -50,7 +78,7 @@ const WebNavBarItem = ({text, img}) => {
             text
             ? 
             <div className='WebNavBarItem'>
-                <img src=''></img>
+                <img src={img ? require(`../../../img/icons/${img}.png`) : ''}></img>
                 <p>{text}</p>
             </div>
             : <span className='WebNavBarVerticalBar'></span> )
@@ -79,18 +107,18 @@ const WebNavBar = () => {
     const navBarItems = [
         {text: 'Back', img: null},
         {text: 'Forward', img: null},
-        {text: 'Stop', img: null},
+        {text: 'Stop', img: 'web-nav-bar-stop'},
         {text: 'Refresh', img: null},
-        {text: 'Home', img: null},
+        {text: 'Home', img: 'web-nav-bar-print'},
         {text: null, img: null}, //Vertical bar
-        {text: 'Search', img: null},
-        {text: 'Favorites', img: null},
-        {text: 'Media', img: null},
-        {text: 'History', img: null},
+        {text: 'Search', img: 'web-nav-bar-search'},
+        {text: 'Favorites', img: 'web-nav-bar-favorites'},
+        {text: 'Media', img: 'web-nav-bar-media'},
+        {text: 'History', img: 'web-nav-bar-history'},
         {text: null, img: null}, //Vertical bar
-        {text: 'Mail', img: null},
-        {text: 'Print', img: null},
-        {text: 'Edit', img: null}
+        {text: 'Mail', img: 'web-nav-bar-mail'},
+        {text: 'Print', img: 'web-nav-bar-print'},
+        {text: 'Edit', img: 'web-nav-bar-edit'}
     ]
     const urlBarItems = [
         {text: 'Address', img: null},

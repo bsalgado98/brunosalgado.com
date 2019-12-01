@@ -26,10 +26,43 @@
     background-color: #01006b;
     color: white;
 }
+.WebNavBarItem img {
+    display: flex;
+    max-width:30px;
+    max-height:30px;
+    width: auto;
+    height: auto;
+    align-self: center;
+justify-items: center;
+}
+.WebNavBarItem p {
+    margin: 0;
+}
 .WebNavBarVerticalBar {
     margin: 0.2rem 0 0.2rem 0;
     border-left: 1px solid gray;
     border-right: 1px solid white;
+}
+.Arrow {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+.ArrowBase {
+    background-color: black;
+    width: 15px;
+    height: 10px;
+}
+.ArrowForward {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid black;
+}
+.ArrowBack {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid black;
 }
 #url-bar-entry {
     display: flex;
