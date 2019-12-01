@@ -1,0 +1,49 @@
+* {
+    font-family: 'VT323', monospace;
+}
+#web-nav-bar {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.WebNavBarRow {
+    display: flex;
+    width: 100%;
+    border-top: solid 1px white;
+    border-bottom: solid 1px gray;
+    flex-wrap: wrap;
+}
+.WebNavBarItem {
+    display: flex;;
+    flex-direction: column;
+    padding: 0 5px 0 5px;
+    justify-content: center;
+}
+.WebNavBarItem p:first-letter {
+    text-decoration: underline;
+}
+.WebNavBarItem:hover {
+    background-color: #01006b;
+    color: white;
+}
+.WebNavBarVerticalBar {
+    margin: 0.2rem 0 0.2rem 0;
+    border-left: 1px solid gray;
+    border-right: 1px solid white;
+}
+#url-bar-entry {
+    display: flex;
+    background-color: white;
+    border: 1px solid black;
+    border-bottom: 1px solid white;
+}
+#url-bar-down {
+    display: flex;
+    flex-direction: column;
+    background-color: #c0c0c0;
+    justify-content: center;
+    padding: 2px;
+}
+#url-bar-down:hover {
+    background-color: #cacaca;
+}

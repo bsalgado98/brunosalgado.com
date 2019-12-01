@@ -1,0 +1,13 @@
+#experience {
+    display: flex;
+    flex-direction: column;
+}
+.ExperiencePage {
+    background-color: white;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 0 10% 0 10%;
+    overflow: scroll;
+}
