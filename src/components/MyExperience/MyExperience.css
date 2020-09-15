@@ -11,3 +11,12 @@
     padding: 0 10% 0 10%;
     overflow: scroll;
 }
+
+.ExperienceTitle {
+    display: flex;
+    align-items: center;
+}
+
+.ExperienceTitleName {
+    padding: 5%;
+}
