@@ -12,7 +12,7 @@ export const EXPERIENCE_TEXT = "my_experiences.html"
 export const EXPERIENCE_ICON = "briefcase-4.png"
 export const PROJECTS_TEXT = "My Projects"
 export const PROJECTS_ICON = "directory_closed-4.png"
-export const SKILLS_TEXT = "my_skills.dll"
+export const SKILLS_TEXT = "My Skills"
 export const SKILLS_ICON = "computer-4.png"
 export const REFERENCES_TEXT = "references.bat"
 export const REFERENCES_ICON = "address_book_users.png"
@@ -96,6 +96,7 @@ class App extends Component {
                 >
                     <div>
                         <img
+                            alt="the game over screen in dark souls that says 'you died'"
                             id="you-died"
                             src={require(`./img/icons/youdied.png`)}
                         ></img>
