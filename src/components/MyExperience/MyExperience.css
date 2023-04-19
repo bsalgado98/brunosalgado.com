@@ -4,7 +4,10 @@
     height: 90vh;
 }
 .ExperiencePage {
-    background-color: white;
+    position: relative;
+    z-index: 0;
+    background-color: black;
+    color: white;
     border-left: 1px solid black;
     border-top: 1px solid black;
     border-right: 1px solid white;
@@ -14,6 +17,24 @@
     height: 100%;
 }
 
+.MapContainer {
+    position: absolute;
+    z-index: -2;
+    top: 0;
+    left: 0;
+}
+
+.MapOverlayContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 1));
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+}
+
 .ExperienceTitle {
     display: flex;
     align-items: center;
@@ -21,4 +42,8 @@
 
 .ExperienceTitleName {
     padding: 5%;
+}
+
+.ExperienceTeamTitle {
+    color: gray;
 }

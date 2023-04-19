@@ -1,22 +1,47 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext, useRef } from "react"
 import "./MyExperience.css"
 import WebNavBar from "./WebNavBar/WebNavBar"
 import { CurrentExperienceIndexProvider } from "./CurrentExperienceIndexContext"
-// import { zillowLogo } from "../../img/logos/zillow.png"
+import { GoogleMap, LoadScript } from "@react-google-maps/api"
+const amexLogo = require("../../img/logos/amex-logo.png")
 const zillowLogo = require("../../img/logos/zillow.png")
 const jnjLogo = require("../../img/logos/jnj.png")
 const crestronLogo = require("../../img/logos/crestron.png")
 
 const MyExperience = () => {
-    const experiences = ["Zillow", "JnJ1", "JnJ2", "SERC", "Crestron"]
+    const experiencePageRef = useRef()
+    const experiences = ["Amex", "Zillow", "JnJ", "SERC", "Crestron"]
     let CurrentExperienceIndexContext = React.createContext(0)
     const [currentExperienceIndex, setCurrentExperienceIndex] = useState(
         useContext(CurrentExperienceIndexContext)
     )
-    // let currentExperience = experiences[currentExperienceIndex]
     const [currentExperience, setCurrentExperience] = useState(
         experiences[currentExperienceIndex]
     )
+    const [mapContainerStyle, setMapContainerStyle] = useState({
+        width: '1px',
+        height: '1px'
+    })
+    const [mapHeading, setMapHeading] = useState(0)
+    const defaultMapOptions = {
+        disableDefaultUI: true,
+        mapId: "ce825800c289678d",
+        tilt: 50
+    }
+
+    useEffect(() => {
+        setMapContainerStyle({
+            width: `${experiencePageRef.current.offsetWidth}px`,
+            height: '200px'
+        })
+
+        const interval = setInterval(() => {
+            setMapHeading(prev => prev + 1)
+        }, 75)
+
+        return () => clearInterval(interval)
+    }, [])
+
     function setExperienceIndex(valueToAdd) {
         setCurrentExperienceIndex((prev) => {
             prev += valueToAdd
@@ -28,81 +53,104 @@ const MyExperience = () => {
             return prev
         })
     }
-    const renderExperience = (name) => {
-        const teamStyle = { color: "gray" }
-        switch (name) {
-            case "Zillow":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img src={zillowLogo}></img>
-                            <h1 className="ExperienceTitleName">Zillow</h1>
-                        </div>
-                        <h4>Software Engineer Intern, June - August 2020</h4>
-                        <h4 style={teamStyle}>
-                            Agent Customer Experience (ACE) Group, Agent Ready
-                            Consumers (ARCs) Team
-                        </h4>
+
+    const experienceBody = {
+        Amex: {
+            logo: amexLogo,
+            company: 'American Express',
+            mapOptions: {
+                center: {
+                    lat: 40.71387939415788,
+                    lng: -74.01469484214867
+                },
+                zoom: 13
+            },
+            body: [
+                {
+                    position: 'Software Engineer II, April 2023 - Present',
+                    team: 'Modern Accounts Receivable System (MARS)',
+                    description: <p>In progress...</p>
+                },
+                {
+                    position: 'Software Engineer III, August 2021 - March 2023',
+                    team: 'B2B Supplier Analytics',
+                    description:
                         <ul>
-                            <li>React</li>
-                            <li>A/B Testing</li>
-                            <li>Python API Development</li>
+                            <li>Spearheaded benchmarking features allowing clients to compare their accounts payable departments against industry standards</li>
+                            <li>Architected entire end-to-end regression testing suite using Java, Selenium, and Sauce Labs which resulted in 50% faster turnaround time for post-deployment testing</li>
+                            <li>Delivered a keystone frontend feature that enabled customers to view and download critical merchant terms and details</li>
                         </ul>
-                    </div>
-                )
-            case "JnJ1":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img src={jnjLogo}></img>
-                            <h1 className="ExperienceTitleName">
-                                Johnson &amp; Johnson
-                            </h1>
-                        </div>
-                        <h4>
-                            Software Engineer Co-op, September - December 2019
-                        </h4>
-                        <h4 style={teamStyle}>
-                            Technology Services, Software Engineering and
-                            Emerging Technology (SWEET) Team
-                        </h4>
+                }
+            ]
+        },
+        Zillow: {
+            logo: zillowLogo,
+            company: 'Zillow',
+            mapOptions: {
+                center: {
+                    lat: 47.607809531442754,
+                    lng: -122.33830156442414
+                },
+                zoom: 17
+            },
+            body: [
+                {
+                    position: 'Software Engineer Intern, June - August 2020',
+                    team: 'Agent Customer Experience (ACE) Group, Agent Ready Consumers (ARCs) Team',
+                    description:
                         <ul>
-                            <li>React</li>
-                            <li>Three.js</li>
-                            <li>Created a chatbot for drug facts on a newly released medicine</li>
+                            <li>Implemented an A/B testing experiment on the customer-facing property contact form which provided invaluable insight on user preferences and helped Product Managers make informed decisions</li>
+                            <li>Replicated an existing API endpoint's functionality for accessing a read-replica database's advertising campaigns that improved efficiency and performance by 50%</li>
+                            <li>Provided full-test coverage for the "Take a Tour" time dropdown selection system which exposed issues and vulnerabilities within Zillow's testing suite</li>
                         </ul>
-                    </div>
-                )
-            case "JnJ2":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img alt="johnson and johnson logo" src={jnjLogo}></img>
-                            <h1 className="ExperienceTitleName">
-                                Johnson &amp; Johnson
-                            </h1>
-                        </div>
-                        <h4>IT Co-op, January - August 2019</h4>
-                        <h4 style={teamStyle}>
-                            Supply Chain, Customer Connectivity, Digital
-                            Channels Team
-                        </h4>
+                }
+            ]
+        },
+        JnJ: {
+            logo: jnjLogo,
+            company: 'Johnson & Johnson',
+            mapOptions: {
+                center: {
+                    lat: 40.572137113906344,
+                    lng: -74.65650359995752
+                },
+                zoom: 17
+            },
+            body: [
+                {
+                    position: 'Software Engineer Co-op, September - December 2019',
+                    team: 'Technology Services, Software Engineering and Emerging Technology (SWEET) Team',
+                    description:
                         <ul>
-                            <li>RPA (Robotic Process Automation)</li>
-                            <li>Swift</li>
-                            <li>UI/UX</li>
+                            <li>Designed and implemented the animation for a new virtual assistant using Three.js by working closely with a design contractor and providing daily iterations of the assistant</li>
+                            <li>Directed discussions with external resources, including Apple engineers and off-shore teams, in order to facilitate a time-sensitive API integration</li>
                         </ul>
-                    </div>
-                )
-            case "SERC":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <h1>Systems Engineering Research Center (SERC)</h1>
-                            <img src=""></img>
-                        </div>
-                        <h4>Web Engineer, September - December 2018</h4>
-                        <h4 style={teamStyle}>HELIX Research Team</h4>
+                },
+                {
+                    position: 'IT Co-op, January - August 2019',
+                    team: 'Supply Chain, Customer Connectivity, Digital Channels Team',
+                    description:
+                        <ul>
+                            <li>Re-engineered a Robotic Process Automation project by negotiating requirements with team lead resulting in $22,000 in savings</li>
+                        </ul>
+                }
+            ]
+        },
+        SERC: {
+            logo: null,
+            company: 'Systems Engineering Research Center (SERC)',
+            mapOptions: {
+                center: {
+                    lat: 40.74283454491588,
+                    lng: -74.02647772325001
+                },
+                zoom: 18
+            },
+            body: [
+                {
+                    position: 'Web Engineer, September - December 2018',
+                    team: 'HELIX Research Team',
+                    description:
                         <p>
                             I was responsible for designing and developing a
                             website to showcase the research efforts of the
@@ -116,24 +164,24 @@ const MyExperience = () => {
                                 <a href="https://helix-se.org">here.</a>
                             </strong>
                         </p>
-                    </div>
-                )
-            case "Crestron":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img src={crestronLogo}></img>
-                            <h1 className="ExperienceTitleName">
-                                Crestron Electronics
-                            </h1>
-                        </div>
-                        <h4>
-                            Systems Test Engineer Co-op, January - August 2018
-                        </h4>
-                        <h4 style={teamStyle}>
-                            Software Tools, Crestron Toolbox, Verification
-                            Engineering Team
-                        </h4>
+                }
+            ]
+        },
+        Crestron: {
+            logo: crestronLogo,
+            company: 'Crestron Electronics',
+            mapOptions: {
+                center: {
+                    lat: 41.01070217594561,
+                    lng: -73.93624046003306
+                },
+                zoom: 17
+            },
+            body: [
+                {
+                    position: 'Systems Test Engineer Co-op, January - August 2018',
+                    team: 'Software Tools, Crestron Toolbox, Verification Engineering Team',
+                    description:
                         <p>
                             As part of the UI Test Automation team, I developed
                             automated tests using VBScript and the TestComplete
@@ -141,21 +189,50 @@ const MyExperience = () => {
                             some of the company's most important software,
                             including Crestron Studio and Crestron Toolbox.
                         </p>
-                    </div>
-                )
-            default:
-                console.log("EXPERIENCE NOT FOUND")
+                }
+            ]
         }
     }
+
+    const renderExperience = experience => {
+        return (
+            <div ref={experiencePageRef} className="ExperiencePage">
+                <div className="MapContainer">
+                    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+                        <GoogleMap
+                            options={{...defaultMapOptions, ...experience.mapOptions}}
+                            mapContainerStyle={mapContainerStyle}
+                            heading={mapHeading}
+                        ></GoogleMap>
+                    </LoadScript>
+                </div>
+                <span className="MapOverlayContainer"></span>
+                <div className="ExperienceTitle">
+                    <img src={experience.logo}></img>
+                    <h1 className="ExperienceTitleName">{experience.company}</h1>
+                </div>
+                {
+                    experience.body.map((data, idx) => {
+                        return (
+                            <div key={`experience-${idx}`}>
+                                <h2>{data.position}</h2>
+                                <h3 className="ExperienceTeamTitle">{data.team}</h3>
+                                {data.description}
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        )
+    }
     useEffect(() => {
-        console.log("hi")
         setCurrentExperience(experiences[currentExperienceIndex])
     }, [currentExperienceIndex])
     return (
         <CurrentExperienceIndexProvider value={setExperienceIndex}>
             <div id="experience">
                 <WebNavBar />
-                {renderExperience(currentExperience)}
+                {renderExperience(experienceBody[currentExperience])}
             </div>
         </CurrentExperienceIndexProvider>
     )
