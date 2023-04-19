@@ -1,22 +1,47 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext, useRef } from "react"
 import "./MyExperience.css"
 import WebNavBar from "./WebNavBar/WebNavBar"
 import { CurrentExperienceIndexProvider } from "./CurrentExperienceIndexContext"
-// import { zillowLogo } from "../../img/logos/zillow.png"
+import { GoogleMap, LoadScript } from "@react-google-maps/api"
+const amexLogo = require("../../img/logos/amex-logo.png")
 const zillowLogo = require("../../img/logos/zillow.png")
 const jnjLogo = require("../../img/logos/jnj.png")
 const crestronLogo = require("../../img/logos/crestron.png")
 
 const MyExperience = () => {
-    const experiences = ["Zillow", "JnJ1", "JnJ2", "SERC", "Crestron"]
+    const experiencePageRef = useRef()
+    const experiences = ["Amex", "Zillow", "JnJ", "SERC", "Crestron"]
     let CurrentExperienceIndexContext = React.createContext(0)
     const [currentExperienceIndex, setCurrentExperienceIndex] = useState(
         useContext(CurrentExperienceIndexContext)
     )
-    // let currentExperience = experiences[currentExperienceIndex]
     const [currentExperience, setCurrentExperience] = useState(
         experiences[currentExperienceIndex]
     )
+    const [mapContainerStyle, setMapContainerStyle] = useState({
+        width: '1px',
+        height: '1px'
+    })
+    const [mapHeading, setMapHeading] = useState(0)
+    const defaultMapOptions = {
+        disableDefaultUI: true,
+        mapId: "ce825800c289678d",
+        tilt: 50
+    }
+
+    useEffect(() => {
+        setMapContainerStyle({
+            width: `${experiencePageRef.current.offsetWidth}px`,
+            height: '200px'
+        })
+
+        const interval = setInterval(() => {
+            setMapHeading(prev => prev + 1)
+        }, 75)
+
+        return () => clearInterval(interval)
+    }, [])
+
     function setExperienceIndex(valueToAdd) {
         setCurrentExperienceIndex((prev) => {
             prev += valueToAdd
@@ -28,220 +53,104 @@ const MyExperience = () => {
             return prev
         })
     }
-    const renderExperience = (name) => {
-        const teamStyle = { color: "gray" }
-        switch (name) {
-            case "Zillow":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img src={zillowLogo}></img>
-                            <h1 className="ExperienceTitleName">Zillow</h1>
-                        </div>
-                        <h4>Software Engineer Intern, June - August 2020</h4>
-                        <h4 style={teamStyle}>
-                            Agent Customer Experience (ACE) Group, Agent Ready
-                            Consumers (ARCs) Team
-                        </h4>
-                        <p>
-                            Zillow: A real challenge, giant leap, and extreme
-                            learning experience all in one. If I could give my
-                            time at Zillow a tagline, that would surely be it.
-                            <br />
-                            <br />
-                            Zillow was my first "breakthrough" or
-                            "widely-recognized" tech company that truthfully
-                            added a lot of weight to my resume which I could
-                            tell both from peers who read my resume as well as
-                            recruiters themselves.
-                            <br />
-                            <br />
-                            My team, the ARCs (Agent Ready Consumers) team, was
-                            a total of 7 engineers, backend, frontend, and
-                            fullstack, all working on the contact form piece of
-                            the Zillow website/mobile app. If you've ever used
-                            Zillow yourself, you'll know that when you search an
-                            area, click on a property, and see the property
-                            details (known internally as "home details
-                            content"), there are two buttons at the top of the
-                            details side panel which are usually "Ask an Agent"
-                            and "Take a Tour," depending on the property. My
-                            team owned those buttons, the corresponding modals
-                            that popped up upon clicking them, and some backend
-                            functionality related to delivering the form data to
-                            the rest of the data pipeline.
-                            <br />
-                            <br />
-                            In terms of what I worked on, I saw even more work
-                            with React, unit testing, integration testing, A/B
-                            tests, coding for accessibility, and even my first
-                            backend task ever: replicating API functionality
-                            into a brand new endpoint in Python. I think the A/B
-                            test and the Python endpoint are arguably the most
-                            interesting topics to discuss with peers and in
-                            interviews, mostly because they're the easiest to
-                            grasp at a high level.
-                            <br />
-                            <br />
-                            The A/B test I wrote started off as an idea from my
-                            Product Manager, Liz, who noticed in the KPI (key
-                            performance indicator, a fancy term for any metric
-                            deemed useful for advancing a business goal) data
-                            that many users were submitting the property
-                            interest form without actually modifying the message
-                            field which prefills with "Hi, I am interested in
-                            `property_name_here`." My job was simply to
-                            implement a React A/B test that would randomly
-                            assign a version of this form to users that either
-                            has the message box, or doesn't. The hopes were that
-                            we would prove our hypothesis that more people would
-                            submit the form if they didn't see the message box
-                            in it.
-                            <br />
-                            <br />
-                            For the API endpoint, my job was to replicate
-                            functionality from the "ads campaign" database which
-                            was responsible for serving advertisements to
-                            Zillow.com. The new database they wanted to tie in
-                            was a "read replica" of the original ads database.
-                            The purpose of using read replicas is essentially
-                            that this kind of database can only be "read from"
-                            (hence the name) and not "written to." The assurance
-                            that no two connections to the database will affect
-                            each other, like in a read-write scenario,
-                            ultimately improves performance and lookup speeds
-                            thus providing a better user experience.
-                            <br />
-                            <br />
-                            The biggest challenge in this internship with Zillow
-                            was the large skill gap I needed to clear to keep up
-                            with the development pace and code quality bar. One
-                            brand new thing I got to experience was actually
-                            writing my own code specifications and acceptance
-                            criteria. Typically, I was used to the traditional
-                            approach to software engineering, which was where a
-                            Product Owner would clearly define each task and
-                            give acceptance criteria from which developers can
-                            base their code on. Zillow operates much like
-                            Microsoft, for example, in that engineers are
-                            expected to get enough context on a task to write
-                            their own specifications and acceptance criteria.
-                            This new level of independence was a challenge but
-                            the growth I saw because of it was immeasurable and
-                            humbling. Thanks Zillow for the awesome lessons
-                            learned!
-                        </p>
-                    </div>
-                )
-            case "JnJ1":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img src={jnjLogo}></img>
-                            <h1 className="ExperienceTitleName">
-                                Johnson &amp; Johnson
-                            </h1>
-                        </div>
-                        <h4>
-                            Software Engineer Co-op, September - December 2019
-                        </h4>
-                        <h4 style={teamStyle}>
-                            Technology Services, Software Engineering and
-                            Emerging Technology (SWEET) Team
-                        </h4>
-                        <p>
-                            After I finished up my term at J&amp;J in Supply
-                            Chain in Piscataway, I transferred over to the team
-                            I was ultimately vying for: SWEET (Software
-                            Engineering and Emerging Technology).
-                            <br />
-                            <br />
-                            This team focused entirely on software engineering
-                            at its core and functioned almost like a small
-                            startup within the massive corporation that is
-                            Johnson &amp; Johnson. On a team of about 20 total
-                            engineers, some of these engineers would specialize
-                            in mobile development, some in backend development,
-                            and some even in cutting edge work such as IoT and
-                            Machine Learning.
-                            <br />
-                            <br />I got very comfortable with the frontend guys
-                            (and girl!) and equally comfortable working in React
-                            and React Native. I attribute a vast amount of my
-                            development as a professional software engineer to
-                            these 3 to 4 months spent on the SWEET team.
-                            <br />
-                            <br />
-                            Everything from internal git-tracking mobile
-                            applications, chatbot POCs, leading international
-                            business conversations (yes, I directed some
-                            discussions with Chinese Software Engineers, super
-                            awesome), and even creating a siri-like frontend
-                            persona (which can be seen in "My Projects" as
-                            "JAI"), I learned a terrible lot here and
-                            capitalized on this co-op to eventually catapult me
-                            to my next journey.
-                        </p>
-                    </div>
-                )
-            case "JnJ2":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img src={jnjLogo}></img>
-                            <h1 className="ExperienceTitleName">
-                                Johnson &amp; Johnson
-                            </h1>
-                        </div>
-                        <h4>IT Co-op, January - August 2019</h4>
-                        <h4 style={teamStyle}>
-                            Supply Chain, Customer Connectivity, Digital
-                            Channels Team
-                        </h4>
-                        <p>
-                            The team I joined at Johnson &amp; Johnson was a
-                            newly formed team that only had 1 other employee
-                            besides my manager. On the Supply Chain, Digital
-                            Channels team I was able to spearhead proof of
-                            concept projects that served to provide software
-                            development services to different product lines in
-                            the supply chain organization.
-                            <br />
-                            <br />
-                            Being on the team led me to some exciting
-                            opportunities to work on interesting new solutions
-                            to supply chain problems. The main project that I
-                            led involved creating an iOS mobile application that
-                            handled real-time asset tracking within a hospital.
-                            The goal was to place beacons on high-value medical
-                            assets and be able to locate the precise location of
-                            the asset based on beacon geolocation data in
-                            conjunction with Apple's new indoor positioning
-                            features. As part of the team, I not only took
-                            charge of the development effort, but I also
-                            directed conversations with Apple Systems Engineers
-                            to gather information regarding the capabilities of
-                            Apple's CoreLocation software library.
-                            <br />
-                            <br />
-                            This co-op allowed me to develop proficiency in
-                            Swift and also gave me insight into how software
-                            projects are started and managed. Being able to lead
-                            discussions with Apple also allowed me to see what
-                            it was like to negotiate requirements in a broader
-                            scope than just my immediate team.
-                        </p>
-                    </div>
-                )
-            case "SERC":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <h1>Systems Engineering Research Center (SERC)</h1>
-                            <img src=""></img>
-                        </div>
-                        <h4>Web Engineer, September - December 2018</h4>
-                        <h4 style={teamStyle}>HELIX Research Team</h4>
+
+    const experienceBody = {
+        Amex: {
+            logo: amexLogo,
+            company: 'American Express',
+            mapOptions: {
+                center: {
+                    lat: 40.71387939415788,
+                    lng: -74.01469484214867
+                },
+                zoom: 13
+            },
+            body: [
+                {
+                    position: 'Software Engineer II, April 2023 - Present',
+                    team: 'Modern Accounts Receivable System (MARS)',
+                    description: <p>In progress...</p>
+                },
+                {
+                    position: 'Software Engineer III, August 2021 - March 2023',
+                    team: 'B2B Supplier Analytics',
+                    description:
+                        <ul>
+                            <li>Spearheaded benchmarking features allowing clients to compare their accounts payable departments against industry standards</li>
+                            <li>Architected entire end-to-end regression testing suite using Java, Selenium, and Sauce Labs which resulted in 50% faster turnaround time for post-deployment testing</li>
+                            <li>Delivered a keystone frontend feature that enabled customers to view and download critical merchant terms and details</li>
+                        </ul>
+                }
+            ]
+        },
+        Zillow: {
+            logo: zillowLogo,
+            company: 'Zillow',
+            mapOptions: {
+                center: {
+                    lat: 47.607809531442754,
+                    lng: -122.33830156442414
+                },
+                zoom: 17
+            },
+            body: [
+                {
+                    position: 'Software Engineer Intern, June - August 2020',
+                    team: 'Agent Customer Experience (ACE) Group, Agent Ready Consumers (ARCs) Team',
+                    description:
+                        <ul>
+                            <li>Implemented an A/B testing experiment on the customer-facing property contact form which provided invaluable insight on user preferences and helped Product Managers make informed decisions</li>
+                            <li>Replicated an existing API endpoint's functionality for accessing a read-replica database's advertising campaigns that improved efficiency and performance by 50%</li>
+                            <li>Provided full-test coverage for the "Take a Tour" time dropdown selection system which exposed issues and vulnerabilities within Zillow's testing suite</li>
+                        </ul>
+                }
+            ]
+        },
+        JnJ: {
+            logo: jnjLogo,
+            company: 'Johnson & Johnson',
+            mapOptions: {
+                center: {
+                    lat: 40.572137113906344,
+                    lng: -74.65650359995752
+                },
+                zoom: 17
+            },
+            body: [
+                {
+                    position: 'Software Engineer Co-op, September - December 2019',
+                    team: 'Technology Services, Software Engineering and Emerging Technology (SWEET) Team',
+                    description:
+                        <ul>
+                            <li>Designed and implemented the animation for a new virtual assistant using Three.js by working closely with a design contractor and providing daily iterations of the assistant</li>
+                            <li>Directed discussions with external resources, including Apple engineers and off-shore teams, in order to facilitate a time-sensitive API integration</li>
+                        </ul>
+                },
+                {
+                    position: 'IT Co-op, January - August 2019',
+                    team: 'Supply Chain, Customer Connectivity, Digital Channels Team',
+                    description:
+                        <ul>
+                            <li>Re-engineered a Robotic Process Automation project by negotiating requirements with team lead resulting in $22,000 in savings</li>
+                        </ul>
+                }
+            ]
+        },
+        SERC: {
+            logo: null,
+            company: 'Systems Engineering Research Center (SERC)',
+            mapOptions: {
+                center: {
+                    lat: 40.74283454491588,
+                    lng: -74.02647772325001
+                },
+                zoom: 18
+            },
+            body: [
+                {
+                    position: 'Web Engineer, September - December 2018',
+                    team: 'HELIX Research Team',
+                    description:
                         <p>
                             I was responsible for designing and developing a
                             website to showcase the research efforts of the
@@ -255,24 +164,24 @@ const MyExperience = () => {
                                 <a href="https://helix-se.org">here.</a>
                             </strong>
                         </p>
-                    </div>
-                )
-            case "Crestron":
-                return (
-                    <div className="ExperiencePage">
-                        <div className="ExperienceTitle">
-                            <img src={crestronLogo}></img>
-                            <h1 className="ExperienceTitleName">
-                                Crestron Electronics
-                            </h1>
-                        </div>
-                        <h4>
-                            Systems Test Engineer Co-op, January - August 2018
-                        </h4>
-                        <h4 style={teamStyle}>
-                            Software Tools, Crestron Toolbox, Verification
-                            Engineering Team
-                        </h4>
+                }
+            ]
+        },
+        Crestron: {
+            logo: crestronLogo,
+            company: 'Crestron Electronics',
+            mapOptions: {
+                center: {
+                    lat: 41.01070217594561,
+                    lng: -73.93624046003306
+                },
+                zoom: 17
+            },
+            body: [
+                {
+                    position: 'Systems Test Engineer Co-op, January - August 2018',
+                    team: 'Software Tools, Crestron Toolbox, Verification Engineering Team',
+                    description:
                         <p>
                             As part of the UI Test Automation team, I developed
                             automated tests using VBScript and the TestComplete
@@ -280,21 +189,50 @@ const MyExperience = () => {
                             some of the company's most important software,
                             including Crestron Studio and Crestron Toolbox.
                         </p>
-                    </div>
-                )
-            default:
-                console.log("EXPERIENCE NOT FOUND")
+                }
+            ]
         }
     }
+
+    const renderExperience = experience => {
+        return (
+            <div ref={experiencePageRef} className="ExperiencePage">
+                <div className="MapContainer">
+                    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+                        <GoogleMap
+                            options={{...defaultMapOptions, ...experience.mapOptions}}
+                            mapContainerStyle={mapContainerStyle}
+                            heading={mapHeading}
+                        ></GoogleMap>
+                    </LoadScript>
+                </div>
+                <span className="MapOverlayContainer"></span>
+                <div className="ExperienceTitle">
+                    <img src={experience.logo}></img>
+                    <h1 className="ExperienceTitleName">{experience.company}</h1>
+                </div>
+                {
+                    experience.body.map((data, idx) => {
+                        return (
+                            <div key={`experience-${idx}`}>
+                                <h2>{data.position}</h2>
+                                <h3 className="ExperienceTeamTitle">{data.team}</h3>
+                                {data.description}
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        )
+    }
     useEffect(() => {
-        console.log("hi")
         setCurrentExperience(experiences[currentExperienceIndex])
     }, [currentExperienceIndex])
     return (
         <CurrentExperienceIndexProvider value={setExperienceIndex}>
             <div id="experience">
                 <WebNavBar />
-                {renderExperience(currentExperience)}
+                {renderExperience(experienceBody[currentExperience])}
             </div>
         </CurrentExperienceIndexProvider>
     )
